@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+}
+
+.active {
+  color: red;
+  text-decoration: underline;
+}
+
+.article-container {
+}
+
+.favourit-container {
+}
+.article {
+  margin: 1rem;
+  padding: 1rem;
+  background: white;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+ul {
+  list-style: none;
+}
