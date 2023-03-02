@@ -5,7 +5,7 @@ const articleUrl = baseUrl + "articles";
 
 (async function () {
   const container = document.querySelector(".article-container");
-
+  const search = document.querySelector(".search");
   const favourites = getExistingFavs();
 
   try {
@@ -18,8 +18,8 @@ const articleUrl = baseUrl + "articles";
       container.innerHTML += `<div class="article">
                                 <ul>
                                   <li>
-                                    <h4>Title: ${article.title}</h4>
-                                    <h5>Author: ${article.author}</h5>
+                                    <h4>${article.title}</h4>
+                                    <h5>${article.author}</h5>
                                     <p>${article.summary}</p>
                                   </li>
                                   <button type="button" class="btn btn-primary" data-bs-toggle="button" data-id="${article.id} data-title${article.title}">Store me</button>
@@ -35,6 +35,20 @@ const articleUrl = baseUrl + "articles";
   favButtons.forEach((button) => {
     button.addEventListener("click", handleClick);
   });
+
+  search.onkeyup = function (event) {
+    const searchValue = event.target.value.trim().toLowerCase();
+    const articles = container.querySelectorAll(".article");
+
+    articles.forEach((article) => {
+      const title = article.querySelector("h4").textContent.toLowerCase();
+      if (title.includes(searchValue)) {
+        article.style.display = "block";
+      } else {
+        article.style.display = "none";
+      }
+    });
+  };
 
   function handleClick() {
     this.classList.toggle("btn-primary");
